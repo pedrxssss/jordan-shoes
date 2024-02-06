@@ -6,12 +6,12 @@ const getProdutcs = async () => {
 
 const cardGenerate = async () => {
     const products = await getProdutcs()
-    console.log(products)
-
     products.map((product) => {
-        console.log(product)
-
         let card = document.createElement("div")
+        let price = product.price.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        })
         card.classList.add("products-card")
         card.innerHTML = `
             <figure>
@@ -24,7 +24,7 @@ const cardGenerate = async () => {
                 <h4>${product.product_name}</h4>
                 <h5>${product.product_model}</h5>
             </div>
-            <span>R$ ${product.price}</span>
+            <span>${price}</span>
         `
 
         const productsList = document.querySelector(".products-list")
