@@ -1,0 +1,10 @@
+@import "./base/reset";
+@import "./base/variaveis";
+@import "./components/header";
+@import "./components/main";
+
+body {
+    font-family: $font-archivo;
+    width: 100%;
+    height: 100%;
+}
