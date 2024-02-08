@@ -8,6 +8,7 @@
     margin-block: 20px;
     padding-top: 30px;
     padding-inline: 20px;
+    vertical-align: middle;
 
     h2 {
         font-size: 20px;
@@ -32,7 +33,7 @@
     }
 }
 
-.height-column,
+.size-column,
 .price-column {
     text-align: right;
 }
@@ -45,6 +46,7 @@
         &:hover {
             cursor: pointer;
             color: red;
+            transition: 0.2s;
         }
     }
 }

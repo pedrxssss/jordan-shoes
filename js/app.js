@@ -3,6 +3,7 @@ const productDetailsSection = document.querySelector(".products-details")
 const productsSection = document.querySelector(".products")
 const headerBanner = document.querySelector(".header-banner")
 const details = document.querySelector(".freight")
+const spanId = (document.querySelector(".details span").style.display = "none")
 
 /* Cart */
 const cardBtn = document.querySelector(".shopping-cart div .icon")
@@ -12,6 +13,8 @@ const cartSection = document.querySelector(".cart")
 /* Add to Cart */
 const cart = []
 const addToCartBtn = document.querySelector(".add-to-market-btn")
+const tableBody = document.querySelector(".cart tbody")
+const numItems = document.querySelector(".items")
 
 const price = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -119,6 +122,7 @@ homeBtn.addEventListener("click", (event) => {
     cartSection.style.display = "none"
     productDetailsSection.style.display = "none"
     hiddenBtn()
+    resetSelection(radios)
 })
 
 /* Add to cart */
@@ -133,13 +137,13 @@ addToCartBtn.addEventListener("click", () => {
     }
 
     cart.push(product)
-    
+
     hiddenBtn()
     cartSection.style.display = "block"
     headerBanner.style.display = "none"
 
-    console.log(cart)
-
+    shoppingCartUpdate(cart)
+    itemsNumberUpdates()
 })
 
 /* Checking Labels */
@@ -148,7 +152,6 @@ radios.forEach((radio) => {
     radio.addEventListener("change", () => {
         const label = document.querySelector(`label[for="${radio.id}"]`)
         label.classList.add("selected")
-        console.log(label)
 
         radios.forEach((radioAtual) => {
             if (radioAtual !== radio) {
@@ -172,4 +175,61 @@ const resetSelection = (radios) => {
             }
         })
     })
+}
+
+const shoppingCartUpdate = (cart) => {
+    tableBody.textContent = ""
+
+    cart.map((product) => {
+        tableBody.innerHTML += `
+            <tr>
+                <td>${product.id}</td>
+                <td>${product.name}</td>
+                <td class='size-column'>${product.size}</td>
+                <td class='price-column'>${product.price}</td>
+                <td class='delete-column'>
+                    <span class='material-symbols-outlined' data-id='${product.id}'>Delete</span>
+                </td>
+            </tr>
+        `
+    })
+
+    const total = cart.reduce((accumulatedValue, item) => {
+        return (
+            accumulatedValue +
+            parseFloat(
+                item.price
+                    .replace("R$&nbsp;", "")
+                    .replace(".", "")
+                    .replace(",", ".")
+            )
+        )
+    }, 0)
+
+    document.querySelector(".total-column").innerHTML = price.format(total)
+
+    deleteButtonAcation()
+}
+
+numItems.style.display = "none"
+const itemsNumberUpdates = () => {
+    cart.length > 0
+        ? (numItems.style.display = "block")
+        : (numItems.style.display = "none")
+
+    numItems.innerHTML = cart.length
+}
+
+const deleteButtonAcation = () => {
+    const deleteButton = document.querySelectorAll(".delete-column span")
+    deleteButton.forEach((button) => {
+        button.addEventListener("click", () => {
+            const id = button.getAttribute("data-id")
+            const position = cart.findIndex((item) => item.id == id)
+            cart.splice(position, 1)
+
+            shoppingCartUpdate(cart)
+        })
+    })
+    itemsNumberUpdates()
 }

@@ -20,7 +20,6 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -537,6 +536,7 @@ main .products .products-card span {
   margin-block: 20px;
   padding-top: 30px;
   padding-inline: 20px;
+  vertical-align: middle;
 }
 .cart h2 {
   font-size: 20px;
@@ -557,7 +557,7 @@ main .products .products-card span {
   padding-inline: 10px;
 }
 
-.height-column,
+.size-column,
 .price-column {
   text-align: right;
 }
@@ -569,6 +569,7 @@ main .products .products-card span {
 .delete-column span:hover {
   cursor: pointer;
   color: red;
+  transition: 0.2s;
 }
 
 tfoot {
