@@ -52,17 +52,63 @@ table {
   border-spacing: 0;
 }
 
+header .header-brand {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  background-color: #f3f7ff;
+}
+header .header-brand .brand a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 10px;
+  margin-left: 20px;
+  border-radius: 30px;
+  color: #f3f7ff;
+  font-size: 24px;
+  text-decoration: none;
+  background-color: #121214;
+}
+header .header-brand .shopping-cart div {
+  margin-right: 10px;
+  cursor: pointer;
+}
+header .header-brand .shopping-cart div span {
+  font-size: 28px;
+}
+header .header-brand .shopping-cart div span:hover {
+  filter: invert(0.5);
+  transition: 0.2s;
+}
+header .header-brand .shopping-cart .items {
+  top: 2px;
+  right: 0px;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  border-radius: 50%;
+  color: #cccccc;
+  font-size: 14px;
+  text-align: center;
+  line-height: 18px;
+  background-color: red;
+}
 header .header-title {
   width: 100%;
   height: 64px;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   text-align: center;
   font-weight: 500;
   font-size: 24px;
   font-weight: 500;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 @media (max-width: 768px) {
   header .header-title {
@@ -79,6 +125,7 @@ header .header-title {
 header .header-banner {
   width: 100%;
   height: 400px;
+  margin-top: 50px;
   background-image: url(../../images/image-michael-jordan.png);
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -98,7 +145,7 @@ header .header-banner .header-banner-content {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 header .header-banner .header-banner-content h1 {
   display: flex;
@@ -144,6 +191,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 main .products {
   width: 100%;
@@ -223,6 +271,7 @@ main .products .products-list {
 main .products .products-card {
   width: 280px;
   height: 326px;
+  flex-basis: 280px;
   margin: auto;
 }
 @media (max-width: 900px) {
@@ -241,7 +290,13 @@ main .products .products-card figure {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F3F7FF;
+  background-color: #f3f7ff;
+  border: 1px solid transparent;
+}
+main .products .products-card figure:hover {
+  border: 1px solid #7ca2f4;
+  cursor: pointer;
+  transition: 0.3s;
 }
 main .products .products-card div {
   display: flex;
@@ -253,6 +308,10 @@ main .products .products-card div {
 main .products .products-card div h4 {
   font-size: 18px;
   font-weight: 500;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 @media (max-width: 600px) {
   main .products .products-card div h4 {
@@ -262,12 +321,258 @@ main .products .products-card div h4 {
 main .products .products-card div h5 {
   font-size: 16px;
   font-weight: 500;
-  color: #7CA2F4;
+  color: #7ca2f4;
 }
 main .products .products-card span {
   font-family: "Space Grotesk", sans-serif;
   font-size: 20px;
   font-weight: 500;
+}
+
+.products-details {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-content: center;
+  gap: 32px;
+  padding-top: 20px;
+}
+
+.products-details-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.products-details-images figure {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f7ff;
+}
+
+.products-details-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.products-details-info .details {
+  color: #121214;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.products-details-info .details h4 {
+  font-size: 24px;
+  font-weight: 500;
+}
+@media (max-width: 600px) {
+  .products-details-info .details h4 {
+    font-size: 16px;
+  }
+}
+.products-details-info .details h5 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #7ca2f4;
+}
+.products-details-info .details span {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+.products-details-info .size h5 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.products-details-info .size .sizes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.products-details-info .size .sizes .radio {
+  display: none;
+}
+.products-details-info .size .sizes .numbers {
+  height: 40px;
+  border: 1px solid #f3f7ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.products-details-info .size .sizes .numbers:hover {
+  border-color: #000000;
+  cursor: pointer;
+  transition: 0.2sk;
+}
+.products-details-info .size .sizes .selected {
+  border-color: #000000;
+}
+.products-details-info .add-to-market-btn {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  padding: 0;
+  background: #000000;
+  color: #f3f7ff;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: "Archivo", sans-serif;
+  cursor: pointer;
+}
+.products-details-info .description {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+}
+.products-details-info .description p {
+  margin-bottom: 10px;
+}
+.products-details-info .description ul {
+  margin-left: 20px;
+}
+.products-details-info .description ul li {
+  list-style: disc;
+}
+.products-details-info .freight {
+  color: #000000;
+}
+.products-details-info .freight details::marker,
+.products-details-info .freight summary::marker {
+  content: "";
+}
+.products-details-info .freight summary {
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.products-details-info .freight p {
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.products-details-info .freight label {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.products-details-info .freight div {
+  margin-block: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 20px;
+}
+.products-details-info .freight div input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #cccccc;
+  border-radius: 50px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+.products-details-info .freight div button {
+  width: 120px;
+  height: 40px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid #cccccc;
+  border-radius: 50px;
+  background-color: #ffffff;
+  cursor: pointer;
+  position: absolute;
+  padding: 0;
+  bottom: 7px;
+  right: 0px;
+}
+.products-details-info .freight div button:hover {
+  border-color: #222;
+  transition: 0.2s;
+}
+.products-details-info .freight a {
+  color: #000000;
+  font-weight: 500;
+}
+
+.expand-more::after,
+.expand-less::after {
+  content: "";
+  display: inline-flex;
+  background-image: url("../../images/expand_more.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+}
+
+.expand-less::after {
+  background-image: url("../../images/expand_less.svg");
+}
+
+.back {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+}
+.back:hover {
+  cursor: pointer;
+  border: 1px solid #7ca2f4;
+}
+
+.cart {
+  width: 97%;
+  height: 100%;
+  display: none;
+  margin-block: 20px;
+  padding-top: 30px;
+  padding-inline: 20px;
+}
+.cart h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.cart table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cart table tr,
+.cart table th,
+.cart table td {
+  border: 1px solid #121214;
+  height: 40px;
+}
+.cart table td {
+  padding-inline: 10px;
+}
+
+.height-column,
+.price-column {
+  text-align: right;
+}
+
+.delete-column {
+  width: 65px;
+  text-align: center;
+}
+.delete-column span:hover {
+  cursor: pointer;
+  color: red;
+}
+
+tfoot {
+  text-align: right;
 }
 
 body {

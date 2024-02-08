@@ -1,0 +1,245 @@
+@import "../base/variaveis";
+
+.products-details {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-content: center;
+    gap: 32px;
+    padding-top: 20px;
+}
+
+.products-details-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    figure {
+        width: 100%;
+        height: 200px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $dark-40;
+    }
+}
+
+.products-details-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .details {
+        color: $dark-10;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h4 {
+            font-size: 24px;
+            font-weight: 500;
+
+            @media (max-width: 600px) {
+                font-size: 16px;
+            }
+        }
+
+        h5 {
+            font-size: 16px;
+            font-weight: 500;
+            color: $brand-color;
+        }
+
+        span {
+            font-family: $font-grotesk;
+            font-size: 24px;
+            font-weight: 500;
+        }
+    }
+
+    .size {
+        h5 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .sizes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+
+            .radio {
+                display: none;
+            }
+
+            .numbers {
+                height: 40px;
+                border: 1px solid $dark-40;
+
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    border-color: $dark;
+                    cursor: pointer;
+                    transition: 0.2sk;
+                }
+            }
+
+            .selected {
+                border-color: $dark;
+            }
+        }
+    }
+
+    .add-to-market-btn {
+        width: 100%;
+        height: 50px;
+        border: none;
+        border-radius: 50px;
+        padding: 0;
+
+        background: $dark;
+        color: $dark-40;
+        font-weight: 500;
+        font-size: 16px;
+        font-family: $font-archivo;
+
+        cursor: pointer;
+    }
+
+    .description {
+        color: $dark;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-left: 20px;
+
+            li {
+                list-style: disc;
+            }
+        }
+    }
+
+    .freight {
+        details::marker,
+        summary::marker {
+            content: "";
+        }
+
+        color: $dark;
+
+        summary {
+            font-size: 18px;
+            font-weight: 500;
+
+            cursor: pointer;
+
+            height: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-size: 16px;
+
+            margin-bottom: 6px;
+        }
+
+        div {
+            margin-block: 10px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 20px;
+
+            input {
+                width: 100%;
+                height: 50px;
+                border: 1px solid $dark-50;
+                border-radius: 50px;
+                padding-left: 20px;
+
+                font-size: 20px;
+            }
+
+            button {
+                width: 120px;
+                height: 40px;
+
+                color: $dark;
+                font-size: 16px;
+                font-weight: 500;
+
+                border: 1px solid $dark-50;
+                border-radius: 50px;
+                background-color: $dark-30;
+                cursor: pointer;
+                position: absolute;
+                padding: 0;
+
+                bottom: 7px;
+                right: 0px;
+
+                &:hover {
+                    border-color: #222;
+                    transition: 0.2s;
+                }
+            }
+        }
+
+        a {
+            color: $dark;
+            font-weight: 500;
+        }
+    }
+}
+
+.expand-more::after,
+.expand-less::after {
+    content: "";
+    display: inline-flex;
+    background-image: url("../../images/expand_more.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+.expand-less::after {
+    background-image: url("../../images/expand_less.svg");
+}
+
+.back {
+    margin-top: 10px;
+    padding: 10px;
+
+    border: 1px solid $dark-50;
+    border-radius: 8px;
+
+    &:hover {
+        cursor: pointer;
+        border: 1px solid $brand-color;
+    }
+}

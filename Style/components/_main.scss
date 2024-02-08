@@ -6,6 +6,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
     .products {
         width: 100%;
@@ -83,6 +84,7 @@ main {
         .products-card {
             width: 280px;
             height: 326px;
+            flex-basis: 280px;
             margin: auto;
 
             @media (max-width: 900px) {
@@ -101,6 +103,14 @@ main {
                 align-items: center;
                 justify-content: center;
                 background-color: $dark-40;
+
+                border: 1px solid transparent;
+
+                &:hover {
+                    border: 1px solid $brand-color;
+                    cursor: pointer;
+                    transition: 0.3s;
+                }
             }
 
             div {
@@ -114,6 +124,11 @@ main {
                 h4 {
                     font-size: 18px;
                     font-weight: 500;
+
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
 
                     @media (max-width: 600px) {
                         font-size: 16px;

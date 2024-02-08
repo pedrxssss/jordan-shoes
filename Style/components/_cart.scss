@@ -1,0 +1,54 @@
+@import "../base/variaveis";
+
+.cart {
+    width: 97%;
+    height: 100%;
+
+    display: none;
+    margin-block: 20px;
+    padding-top: 30px;
+    padding-inline: 20px;
+
+    h2 {
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        tr,
+        th,
+        td {
+            border: 1px solid $dark-10;
+            height: 40px;
+        }
+
+        td {
+            padding-inline: 10px;
+        }
+    }
+}
+
+.height-column,
+.price-column {
+    text-align: right;
+}
+
+.delete-column {
+    width: 65px;
+    text-align: center;
+
+    span {
+        &:hover {
+            cursor: pointer;
+            color: red;
+        }
+    }
+}
+
+tfoot {
+    text-align: right;
+}

@@ -2,6 +2,8 @@
 @import "./base/variaveis";
 @import "./components/header";
 @import "./components/main";
+@import "./components/products";
+@import "./components/cart";
 
 body {
     font-family: $font-archivo;
