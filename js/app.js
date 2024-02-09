@@ -1,31 +1,84 @@
-const backBtn = document.querySelector(".back")
-const productDetailsSection = document.querySelector(".products-details")
-const productsSection = document.querySelector(".products")
-const headerBanner = document.querySelector(".header-banner")
-const details = document.querySelector(".freight")
-const spanId = (document.querySelector(".details span").style.display = "none")
-
 /* Cart */
-const cardBtn = document.querySelector(".shopping-cart div .icon")
 const homeBtn = document.querySelector(".home-link")
-const cartSection = document.querySelector(".cart")
-
-/* Add to Cart */
-const cart = []
-const addToCartBtn = document.querySelector(".add-to-market-btn")
-const tableBody = document.querySelector(".cart tbody")
+const cardBtn = document.querySelector(".shopping-cart div .icon")
 const numItems = document.querySelector(".items")
 
+/* Add to Cart */
+const addToCartBtn = document.querySelector(".add-to-market-btn")
+const cart = []
+const cartSection = document.querySelector(".cart")
+const tableBody = document.querySelector(".cart tbody")
+
+/* Variables */
+const headerBanner = document.querySelector(".header-banner")
+const productsSection = document.querySelector(".products")
+const productsList = document.querySelector(".products-list")
+const backBtn = document.querySelector(".back")
+const productDetailsSection = document.querySelector(".products-details")
+const spanId = (document.querySelector(".details span").style.display = "none")
+const details = document.querySelector(".freight")
+
+//Update cart and items function
+const updateCartAndItems = () => {
+    tableBody.textContent = ""
+
+    cart.forEach((product) => {
+        tableBody.innerHTML += `
+            <tr>
+                <td>${product.id}</td>
+                <td>${product.name}</td>
+                <td class='size-column'>${product.size}</td>
+                <td class='price-column'>${product.price}</td>
+                <td class='delete-column'>
+                    <span class='material-symbols-outlined' data-id='${product.id}'>Delete</span>
+                </td>
+            </tr>
+        `
+    })
+
+    const total = cart.reduce((accumulatedValue, item) => {
+        return accumulatedValue + cleanRealFormat(item.price)
+    }, 0)
+
+    document.querySelector(".total-column").innerHTML = price.format(total)
+
+    updateItemsDisplay()
+    setupDeleteButtons()
+}
+
+const cleanRealFormat = (value) => {
+    return parseFloat(
+        value.replace("R$&nbsp;", "").replace(".", "").replace(",", ".")
+    )
+}
+
+//Update the exibition of items number
+numItems.style.display = "none"
+const updateItemsDisplay = () => {
+    numItems.style.display = cart.length > 0 ? "block" : "none"
+    numItems.textContent = cart.length
+}
+
+//Buton action of delete items from cart
+const setupDeleteButtons = () => {
+    const deleteButton = document.querySelectorAll(".delete-column span")
+    deleteButton.forEach((button) => {
+        button.addEventListener("click", () => {
+            const id = button.getAttribute("data-id")
+            const position = cart.findIndex((item) => item.id == id)
+            cart.splice(position, 1)
+
+            updateCartAndItems(cart)
+        })
+    })
+    updateItemsDisplay()
+}
+
+//Function relationated at navegations and funcionality
 const price = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
 })
-
-const hiddenBtn = () => {
-    backBtn.style.display = "none"
-    productDetailsSection.style.display = "none"
-}
-hiddenBtn()
 
 const getProdutcs = async () => {
     const response = await fetch("js/products.json")
@@ -33,14 +86,30 @@ const getProdutcs = async () => {
     return data
 }
 
-const cardGenerate = async () => {
-    const products = await getProdutcs()
-    products.map((product) => {
-        let card = document.createElement("div")
+const loadProductsAndGenerateCard = async () => {
+    try {
+        const products = await getProdutcs()
+        products.forEach((product) => {
+            if (isValidProduct(product)) {
+                const card = createCardProduct(product)
+                productsList.appendChild(card)
+                fillCard(card, product)
+            } else {
+                console.error(
+                    "O objeto product está incompleto ou ausente de propriedades necessárias."
+                )
+            }
+        })
+    } catch (error) {
+        console.error("Erro ao obter produtos", error)
+    }
+}
 
-        card.id = product.id
-        card.classList.add("products-card")
-        card.innerHTML = `
+const createCardProduct = (product) => {
+    const card = document.createElement("div")
+    card.id = product.id
+    card.classList.add("products-card")
+    card.innerHTML = `
             <figure>
                 <img
                     src="images/${product.image}"
@@ -53,31 +122,30 @@ const cardGenerate = async () => {
             </div>
             <span>${price.format(product.price)}</span>
         `
-
-        const productsList = document.querySelector(".products-list")
-        productsList.appendChild(card)
-
-        fillCard(card, products)
-    })
+    return card
 }
-cardGenerate()
 
-const fillCard = (card, products) => {
+const isValidProduct = (product) => {
+    return (
+        product.id &&
+        product.product_name &&
+        product.product_model &&
+        product.price
+    )
+}
+
+//Fill in product cards
+const fillCard = (card, product) => {
     card.addEventListener("click", (e) => {
         productsSection.style.display = "none"
         productDetailsSection.style.display = "grid"
         backBtn.style.display = "block"
 
-        const cardClicked = e.currentTarget
-        const productId = cardClicked.id
-        const productClicked = products.find(
-            (product) => product.id == productId
-        )
-
-        fillProductData(productClicked)
+        fillProductData(product)
     })
 }
 
+//Fill in product details and data
 const fillProductData = (product) => {
     const images = document.querySelectorAll(
         ".products-details-images figure img"
@@ -95,19 +163,28 @@ const fillProductData = (product) => {
     )
 }
 
-backBtn.addEventListener("click", () => {
-    hiddenBtn()
-    productsSection.style.display = "flex"
+//Hidden button and product details section
+const hiddenBtnAndDetailsSection = () => {
+    backBtn.style.display = "none"
+    productDetailsSection.style.display = "none"
+}
+hiddenBtnAndDetailsSection()
 
-    resetSelection(radios)
-})
-
+//Add arrow image to summary
 details.addEventListener("toggle", () => {
     const summary = document.querySelector("summary")
     summary.classList.toggle("expand-more")
     summary.classList.toggle("expand-less")
 })
 
+//Event Listeners Config
+backBtn.addEventListener("click", () => {
+    productsSection.style.display = "flex"
+    hiddenBtnAndDetailsSection()
+    resetSelection(radios)
+})
+
+//Hidden sections to appear the cart with products
 cardBtn.addEventListener("click", () => {
     cartSection.style.display = "block"
     productDetailsSection.style.display = "none"
@@ -115,17 +192,18 @@ cardBtn.addEventListener("click", () => {
     headerBanner.style.display = "none"
 })
 
+//Back from cart to main page
 homeBtn.addEventListener("click", (event) => {
     event.preventDefault()
     headerBanner.style.display = "flex"
     productsSection.style.display = "flex"
     cartSection.style.display = "none"
     productDetailsSection.style.display = "none"
-    hiddenBtn()
+    hiddenBtnAndDetailsSection()
     resetSelection(radios)
 })
 
-/* Add to cart */
+//Select Product to add to cart
 addToCartBtn.addEventListener("click", () => {
     const product = {
         id: document.querySelector(".details .id").innerHTML,
@@ -138,15 +216,14 @@ addToCartBtn.addEventListener("click", () => {
 
     cart.push(product)
 
-    hiddenBtn()
+    hiddenBtnAndDetailsSection()
     cartSection.style.display = "block"
     headerBanner.style.display = "none"
 
-    shoppingCartUpdate(cart)
-    itemsNumberUpdates()
+    updateCartAndItems()
 })
 
-/* Checking Labels */
+//Checking labels
 const radios = document.querySelectorAll('input[type="radio"')
 radios.forEach((radio) => {
     radio.addEventListener("change", () => {
@@ -164,72 +241,14 @@ radios.forEach((radio) => {
     })
 })
 
+//Functions that clean the input radio selections
 const resetSelection = (radios) => {
     radios.forEach((radio) => {
-        radios.forEach((radioAtual) => {
-            if (radioAtual != radio) {
-                const otherLabel = document.querySelector(
-                    `label[for="${radioAtual.id}"]`
-                )
-                otherLabel.classList.remove("selected")
-            }
-        })
+        const otherLabel = document.querySelector(`label[for="${radio.id}"]`)
+        otherLabel.classList.remove("selected")
     })
 }
 
-const shoppingCartUpdate = (cart) => {
-    tableBody.textContent = ""
-
-    cart.map((product) => {
-        tableBody.innerHTML += `
-            <tr>
-                <td>${product.id}</td>
-                <td>${product.name}</td>
-                <td class='size-column'>${product.size}</td>
-                <td class='price-column'>${product.price}</td>
-                <td class='delete-column'>
-                    <span class='material-symbols-outlined' data-id='${product.id}'>Delete</span>
-                </td>
-            </tr>
-        `
-    })
-
-    const total = cart.reduce((accumulatedValue, item) => {
-        return (
-            accumulatedValue +
-            parseFloat(
-                item.price
-                    .replace("R$&nbsp;", "")
-                    .replace(".", "")
-                    .replace(",", ".")
-            )
-        )
-    }, 0)
-
-    document.querySelector(".total-column").innerHTML = price.format(total)
-
-    deleteButtonAcation()
-}
-
-numItems.style.display = "none"
-const itemsNumberUpdates = () => {
-    cart.length > 0
-        ? (numItems.style.display = "block")
-        : (numItems.style.display = "none")
-
-    numItems.innerHTML = cart.length
-}
-
-const deleteButtonAcation = () => {
-    const deleteButton = document.querySelectorAll(".delete-column span")
-    deleteButton.forEach((button) => {
-        button.addEventListener("click", () => {
-            const id = button.getAttribute("data-id")
-            const position = cart.findIndex((item) => item.id == id)
-            cart.splice(position, 1)
-
-            shoppingCartUpdate(cart)
-        })
-    })
-    itemsNumberUpdates()
-}
+//Start app
+loadProductsAndGenerateCard()
+updateItemsDisplay()
