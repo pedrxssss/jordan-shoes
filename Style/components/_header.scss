@@ -21,12 +21,17 @@ header {
         }
 
         .brand {
+            background: $dark-10;
+            margin-left: 10px;
+            border-radius: 10px;
+            padding: 0 5px;
+
             a {
                 display: flex;
                 align-items: center;
                 gap: 5px;
 
-                color: $dark-10;
+                color: $dark-30;
                 font-size: 20px;
                 letter-spacing: 2px;
                 font-weight: 500;
@@ -38,7 +43,7 @@ header {
                     }
 
                     h1 {
-                        font-size: 18px;
+                        font-size: 16px;
                     }
                 }
 
@@ -48,7 +53,7 @@ header {
                     }
 
                     h1 {
-                        font-size: 16px;
+                        font-size: 14px;
                     }
                 }
             }

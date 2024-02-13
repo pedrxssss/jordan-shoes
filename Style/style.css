@@ -71,11 +71,17 @@ header .header-brand {
     height: 40px;
   }
 }
+header .header-brand .brand {
+  background: #121214;
+  margin-left: 10px;
+  border-radius: 10px;
+  padding: 0 5px;
+}
 header .header-brand .brand a {
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #121214;
+  color: #ffffff;
   font-size: 20px;
   letter-spacing: 2px;
   font-weight: 500;
@@ -86,7 +92,7 @@ header .header-brand .brand a {
     width: 24px;
   }
   header .header-brand .brand a h1 {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 @media (max-width: 375px) {
@@ -94,7 +100,7 @@ header .header-brand .brand a {
     width: 20px;
   }
   header .header-brand .brand a h1 {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 header .header-brand .shopping-cart div {
