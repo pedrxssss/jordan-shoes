@@ -20,12 +20,12 @@ main {
         gap: 72px;
 
         @media (max-width: 768px) {
+            margin: 48px;
             gap: 40px;
         }
 
         .products-header {
             max-width: 590px;
-            height: 100%;
             font-size: 24px;
             color: $dark-10;
 
@@ -34,27 +34,28 @@ main {
             align-items: center;
             gap: 24px;
             padding-inline: 20px;
-
-            @media (max-width: 900px) {
-                font-size: 16px;
-                line-height: 26px;
-            }
-
-            @media (max-width: 600px) {
-                font-size: 14px;
-                line-height: 24px;
-            }
+            text-align: center;
 
             h3 {
                 font-size: calc($size + 10px);
                 font-weight: 500;
 
-                @media (max-width: 900px) {
+                @media (max-width: 768px) {
                     font-size: 24px;
                 }
 
-                @media (max-width: 600px) {
+                @media (max-width: 375px) {
                     font-size: 20px;
+                }
+            }
+
+            p {
+                @media (max-width: 768px) {
+                    font-size: 18px;
+                }
+
+                @media (max-width: 375px) {
+                    font-size: 14px;
                 }
             }
         }
@@ -68,35 +69,37 @@ main {
             align-items: center;
             justify-content: center;
             row-gap: 32px;
+            margin: 0 10px;
 
-            @media (max-width: 900px) {
+            @media (max-width: 768px) {
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: repeat(3, 1fr);
-                margin-block: 32px;
             }
 
-            @media (max-width: 600px) {
+            @media (max-width: 575px) {
                 grid-template-columns: 1fr;
                 grid-template-rows: repeat(6, 1fr);
             }
         }
 
         .products-card {
-            width: 280px;
+            width: 300px;
             height: 326px;
-            flex-basis: 280px;
             margin: auto;
 
-            @media (max-width: 900px) {
-                width: 280px;
+            @media (max-width: 961px) {
+                width: 240px;
             }
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
+                width: 260px;
+            }
+
+            @media (max-width: 575px) {
                 width: 280px;
             }
 
             figure {
-                width: 100%;
                 height: 200px;
 
                 display: flex;
@@ -129,10 +132,6 @@ main {
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
-
-                    @media (max-width: 600px) {
-                        font-size: 16px;
-                    }
                 }
 
                 h5 {
