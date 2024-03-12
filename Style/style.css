@@ -725,12 +725,89 @@ tfoot {
   text-align: center;
   margin-top: 1.5rem;
 }
+.cart-details .summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cart-details .summary h3 {
+  text-align: start;
+  font-size: 18px;
+  font-weight: 500;
+}
+.cart-details .summary ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: start;
+}
+.cart-details .summary ul li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #121214;
+  font-size: 14px;
+}
+.cart-details .discount-cupom {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 576px) {
+  .cart-details .discount-cupom {
+    width: 400px;
+  }
+}
+.cart-details .discount-cupom label {
+  font-size: 18px;
+  font-weight: 500;
+}
+.cart-details .discount-cupom div {
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 576px) {
+  .cart-details .discount-cupom div {
+    position: relative;
+  }
+}
+.cart-details .discount-cupom div input {
+  width: 80%;
+  height: 25px;
+  margin: auto;
+  border: 1px solid #cccccc;
+  border-radius: 50px;
+  padding: 0.4rem 0.8rem;
+}
+.cart-details .discount-cupom div input::-moz-placeholder {
+  font-weight: 500;
+  font-size: 14px;
+}
+.cart-details .discount-cupom div input::placeholder {
+  font-weight: 500;
+  font-size: 14px;
+}
+.cart-details .discount-cupom div .apply-btn {
+  font-weight: 500;
+  width: 80px;
+  height: 30px;
+  right: 10%;
+  border: 1px solid #cccccc;
+  border-radius: 50px;
+  background-color: #ffffff;
+  cursor: pointer;
+  position: absolute;
+  padding: 0;
+}
 .cart-details .freight-calc {
-  order: 2;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
+}
+@media (min-width: 576px) {
+  .cart-details .freight-calc {
+    width: 400px;
+  }
 }
 .cart-details .freight-calc label {
   font-size: 18px;
@@ -761,6 +838,11 @@ tfoot {
   gap: 1rem;
   justify-content: center;
 }
+@media (min-width: 576px) {
+  .cart-details .freight-calc div {
+    position: relative;
+  }
+}
 .cart-details .freight-calc div input {
   width: 80%;
   height: 25px;
@@ -781,82 +863,15 @@ tfoot {
   font-weight: 500;
   width: 80px;
   height: 30px;
-  right: 12%;
+  right: 10%;
   border: 1px solid #cccccc;
   border-radius: 50px;
   background-color: #ffffff;
   cursor: pointer;
   position: absolute;
   padding: 0;
-}
-.cart-details .discount-cupom {
-  order: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  justify-content: center;
-}
-.cart-details .discount-cupom label {
-  font-size: 18px;
-  font-weight: 500;
-}
-.cart-details .discount-cupom div {
-  display: flex;
-  align-items: center;
-}
-.cart-details .discount-cupom div input {
-  width: 80%;
-  height: 25px;
-  margin: auto;
-  border: 1px solid #cccccc;
-  border-radius: 50px;
-  padding: 0.4rem 0.8rem;
-}
-.cart-details .discount-cupom div input::-moz-placeholder {
-  font-weight: 500;
-  font-size: 14px;
-}
-.cart-details .discount-cupom div input::placeholder {
-  font-weight: 500;
-  font-size: 14px;
-}
-.cart-details .discount-cupom div .apply-btn {
-  font-weight: 500;
-  width: 80px;
-  height: 30px;
-  right: 12%;
-  border: 1px solid #cccccc;
-  border-radius: 50px;
-  background-color: #ffffff;
-  cursor: pointer;
-  position: absolute;
-  padding: 0;
-}
-.cart-details .summary {
-  order: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.cart-details .summary h3 {
-  text-align: start;
-  font-size: 18px;
-  font-weight: 500;
-}
-.cart-details .summary ul {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  text-align: start;
-}
-.cart-details .summary ul li {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #121214;
-  font-size: 14px;
 }
 .cart-details .continue-btn {
-  order: 3;
   color: #f3f7ff;
   font-size: 16px;
   background: #121214;
@@ -867,6 +882,14 @@ tfoot {
   height: 45px;
   margin: 0 auto;
   cursor: pointer;
+}
+
+@media (min-width: 576px) {
+  .responsive {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+  }
 }
 
 body {

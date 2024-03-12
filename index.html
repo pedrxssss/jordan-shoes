@@ -342,29 +342,6 @@
 
       <!-- Cart details -->
       <section class="cart-details">
-        <!-- Freight Calc -->
-        <div class="freight-calc">
-          <label for="cep2">Prazo de entrega</label>
-          <div class="input">
-            <input type="text" id="cep2" placeholder="00000-000" />
-            <button type="button" class="calcBtn">Calcular</button>
-          </div>
-          <p>Tempo previsto de entrega</p>
-          <a href="#" target="_blank" rel="nooper noreferrer"
-            >Não sei meu cep</a
-          >
-        </div>
-
-        <!-- Discount cupom -->
-        <div class="discount-cupom">
-          <label for="cupor">Cupom de desconto</label>
-          <div class="input">
-            <input type="text" id="cupom" placeholder="Adicionar cupom" />
-            <button type="button" class="apply-btn">Aplicar</button>
-          </div>
-          <span class="cupom-discount"></span>
-        </div>
-
         <!-- Summary -->
         <div class="summary">
           <h3>Resumo</h3>
@@ -387,7 +364,31 @@
             </li>
           </ul>
         </div>
-        
+
+        <div class="responsive">
+          <!-- Discount cupom -->
+          <div class="discount-cupom">
+            <label for="cupor">Cupom de desconto</label>
+            <div class="input">
+              <input type="text" id="cupom" placeholder="Adicionar cupom" />
+              <button type="button" class="apply-btn">Aplicar</button>
+            </div>
+            <span class="cupom-discount"></span>
+          </div>
+
+          <!-- Freight Calc -->
+          <div class="freight-calc">
+            <label for="cep2">Prazo de entrega</label>
+            <div class="input">
+              <input type="text" id="cep2" placeholder="00000-000" />
+              <button type="button" class="calcBtn">Calcular</button>
+            </div>
+            <p>Tempo previsto de entrega</p>
+            <a href="#" target="_blank" rel="nooper noreferrer"
+              >Não sei meu cep</a
+            >
+          </div>
+        </div>
         <button type="button" class="continue-btn">Continuar</button>
       </section>
     </section>
